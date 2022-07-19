@@ -13,7 +13,20 @@
 
 <h5 id="Array-at"><a href="#Array-at" class="headerlink" title="Array.at()"></a>Array.at()</h5><p>通过 at(下标) 方法可以索引到数组的值. 与 arr[下标], 不同的是: 通过 at 可以用负索引</p>
 <p>例如:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const array = [1, 2, 3, 4, 5, 6];</span><br><span class="line"></span><br><span class="line">array.at(0); // 1;</span><br><span class="line"></span><br><span class="line">// 以前想访问数组的倒数第一个值 写法: </span><br><span class="line">array[array.length - 1];</span><br><span class="line">// 现在访问数组的倒数第一个值</span><br><span class="line">array.at(-1); // 6;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const array = [1, 2, 3, 4, 5, 6];</span><br><span class="line"></span><br><span class="line">array.at(0); // 1;</span><br><span class="line"></span><br><span class="line">// 以前想访问数组的倒数第一个值 写法: </span><br><span class="line">array[array.length - 1];</span><br><span class="line">// 现在访问数组的倒数第一个值</span><br><span class="line">array.at(-1); // 6;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="Object-hasOwn"><a href="#Object-hasOwn" class="headerlink" title="Object.hasOwn"></a>Object.hasOwn</h5><p>Object.prototype.hasOwnProperty 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）。</p>
+<p>&#x2F;&#x2F; 以前</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const exampleVo = &#123;</span><br><span class="line">  property1: 42</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const hasOwnProperty = Object.prototype.hasOwnProperty();</span><br><span class="line"></span><br><span class="line">const BoolResult = hasOwnProperty.call(exampleVo, &#x27;property1&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; 现在</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const exampleVo = &#123;</span><br><span class="line">  property1: 42</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const BoolResult = Object.hasOwn(exampleVo, &#x27;property1&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="关于类的加强"><a href="#关于类的加强" class="headerlink" title="关于类的加强"></a>关于类的加强</h5><ol>
+<li>私有字段的创建。 拥有私有字段意味着我们拥有强大的封装边界， 无法从外部访问类变量，这表明 class 关键字不再只是糖语法。</li>
+</ol>
+<p>例:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  #iteration = 0;</span><br><span class="line"></span><br><span class="line">  getIteration() &#123;</span><br><span class="line">    return this.#iteration;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const foo = new Foo();</span><br><span class="line"></span><br><span class="line">// 访问不到</span><br><span class="line">foo.#iteration();</span><br><span class="line"></span><br><span class="line">// 可以访问</span><br><span class="line">foo.getIteration();</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
