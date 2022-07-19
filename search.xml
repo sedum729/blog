@@ -1,26 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/blog/2022/07/16/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>JavaScript 运算符</title>
+    <url>/blog/2022/07/16/es2022%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
   </entry>
   <entry>
-    <title>react-useState</title>
+    <title>JavaScript 运算符</title>
+    <url>/blog/2022/07/16/js%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<h3 id="JavaScript-运算符"><a href="#JavaScript-运算符" class="headerlink" title="JavaScript 运算符"></a>JavaScript 运算符</h3><h4 id="二进制位运算符"><a href="#二进制位运算符" class="headerlink" title="二进制位运算符"></a>二进制位运算符</h4><p>二进制运算符将它们的操作数作为 32 个二进制位（0 或 1）的集合，并返回标准的 JavaScript 数值。</p>
+<ul>
+<li><p>&amp; 二进制位与</p>
+<p>在 a &amp; b 的位表示中，每一个对应的位都为 1 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   000 都为1, 才返回1</span><br><span class="line">5 &amp; 2; // 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>| 二进制位或</p>
+<p>在 a &amp; b 的位表示中，每一个对应的位有一个为 1 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 只要有一个为1, 则返回1</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>^ 二进制位异或</p>
+<p>在 a &amp; b 的位表示中，如果两个相应位值不同 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 对应位不同返回1, 反之返回0</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React hook - useState</title>
     <url>/blog/2022/07/16/react-useState/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>作用: 维护函数式组件内部状态<br>参数: 可以传入任意值， 或者是一个函数 用于惰性求值；<br>返回值: 返回一个数组 [状态值, 修改函数];<br>使用方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function Demo() &#123;</span><br><span class="line">  const [text, setText] = React.useState(&#x27;测试&#x27;);</span><br><span class="line"></span><br><span class="line">  const changeEvent = () =&gt; &#123;</span><br><span class="line">    setText(&#x27;我将修改值&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &lt;div onClick=&#123;changeEvent&#125;&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>实现原理:</p>
+<p>实现分析:</p>
+<p>关于 useState 的调用， React 在不同阶段下会调用不同的 useState 方法； 主要有三个阶段： mount， update， rerender。</p>
+<p>接下来从这个三个阶段分析其代码。</p>
+<h3 id="mount-时"><a href="#mount-时" class="headerlink" title="mount 时"></a>mount 时</h3><p>当调用 React.useState 时执行的函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">useState: function (initialState) &#123;</span><br><span class="line">  currentHookNameInDev = &#x27;useState&#x27;;</span><br><span class="line">  mountHookTypesDev();</span><br><span class="line"></span><br><span class="line">  var prevDispatcher = ReactCurrentDispatcher$1.current;</span><br><span class="line">  ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;</span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    return mountState(initialState);</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    ReactCurrentDispatcher$1.current = prevDispatcher;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>currentHookNameInDev 修改当前正在调用的 hookName；</p>
+<p>mountHookTypesDev 会获取当前的 currentHookNameInDev， 然后将其推到 hookTypes 数组中去。hookTypes 的作用？</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function mountHookTypesDev() &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      var hookName = currentHookNameInDev;</span><br><span class="line"></span><br><span class="line">      if (hookTypesDev === null) &#123;</span><br><span class="line">        hookTypesDev = [hookName];</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        hookTypesDev.push(hookName);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>实现其能力的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function mountState(initialState) &#123;</span><br><span class="line">  var hook = mountWorkInProgressHook();</span><br><span class="line"></span><br><span class="line">  if (typeof initialState === &#x27;function&#x27;) &#123;</span><br><span class="line">    // $FlowFixMe: Flow doesn&#x27;t like mixed types</span><br><span class="line">    initialState = initialState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  hook.memoizedState = hook.baseState = initialState;</span><br><span class="line">  var queue = &#123;</span><br><span class="line">    pending: null,</span><br><span class="line">    interleaved: null,</span><br><span class="line">    lanes: NoLanes,</span><br><span class="line">    dispatch: null,</span><br><span class="line">    lastRenderedReducer: basicStateReducer,</span><br><span class="line">    lastRenderedState: initialState</span><br><span class="line">  &#125;;</span><br><span class="line">  hook.queue = queue;</span><br><span class="line">  var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);</span><br><span class="line">  return [hook.memoizedState, dispatch];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用 mountWorkInProgressHook, 首先会创建 hook 对象， 同时会将生成的 hook 对象 作为链表的节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function mountWorkInProgressHook() &#123;</span><br><span class="line">  var hook = &#123;</span><br><span class="line">    memoizedState: null,</span><br><span class="line">    baseState: null,</span><br><span class="line">    baseQueue: null,</span><br><span class="line">    queue: null,</span><br><span class="line">    next: null</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  if (workInProgressHook === null) &#123;</span><br><span class="line">    // This is the first hook in the list</span><br><span class="line">    currentlyRenderingFiber$1.memoizedState = workInProgressHook = hook;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // Append to the end of the list</span><br><span class="line">    workInProgressHook = workInProgressHook.next = hook;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return workInProgressHook;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断如果初始值为函数类型，对函数进行调用， 覆盖默认值。同时将初始值赋值到 hook.memoziedState 跟 hook.baseState 上。</p>
+<p>创建 queue 对象， 赋值到 hook.queue 上。</p>
+<p>创建 dispatch 方法，赋值到 hook.queue.dispatch;</p>
+<p>最后返回一个数组： [ hook.memoziedState, dispatch ];</p>
+<p>简略的看， useState 做的事情就是：</p>
+<ol>
+<li>创建了 hook 对象， 同时将 hook 对象维护到链表上。</li>
+<li>对 hook 对象的 memoziedState 进行赋值。</li>
+<li>创建了 queue 对象， 创建了 dispatch 函数，将 dispatch 函数挂到 queue.dispatch 上</li>
+<li>最后返回了一个数组, [memoziedState, dispatch]；</li>
+</ol>
+<p>那么接下来就会产生几个问题，带着问题去寻找答案。</p>
+<ul>
+<li>hook 对象做什么用的</li>
+<li>hook 对象挂链表的操作是为什么</li>
+<li>queue 对象时做什么用的</li>
+<li>queue 对象上挂了一个 lastRenderedReducer 属性。这个函数作用是什么。</li>
+<li>dispatch 函数做了什么</li>
+</ul>
+<h4 id="dispatch-做了什么"><a href="#dispatch-做了什么" class="headerlink" title="dispatch 做了什么"></a>dispatch 做了什么</h4><p>调用 dispatchSetState 生成 dispatch 时, 传入了两个参数 currentlyRenderingFiber$1, queue 对象。</p>
+<p>currentlyRenderingFiber$1 是一个 FiberNode 对象, 在调用 renderWithHooks 函数对其进行的赋值。 currentlyRenderingFiber$1 &#x3D; workInProgress; 暂时先不管这个对象的其他含义，避免散发问题。</p>
+<p>queue 对象是 mountState 函数调用时创建的。</p>
+<p>[state, setState] &#x3D; React.useState(); 当在调用 setState 时, 会给 dispatchSetState 传入第三个参数 action ;</p>
+<p>接下来看下 dispatchSetState 做了什么。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function dispatchSetState(fiber, queue, action) &#123;</span><br><span class="line">  var lane = requestUpdateLane(fiber);</span><br><span class="line">  var update = &#123;</span><br><span class="line">    lane: lane,</span><br><span class="line">    action: action,</span><br><span class="line">    hasEagerState: false,</span><br><span class="line">    eagerState: null,</span><br><span class="line">    next: null</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  if (isRenderPhaseUpdate(fiber)) &#123;</span><br><span class="line">    enqueueRenderPhaseUpdate(queue, update);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    enqueueUpdate$1(fiber, queue, update);</span><br><span class="line">    var alternate = fiber.alternate;</span><br><span class="line"></span><br><span class="line">    var eventTime = requestEventTime();</span><br><span class="line">    var root = scheduleUpdateOnFiber(fiber, lane, eventTime);</span><br><span class="line"></span><br><span class="line">    if (root !== null) &#123;</span><br><span class="line">      entangleTransitionUpdate(root, queue, lane);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  markUpdateInDevTools(fiber, lane);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>requestUpdateLane 获取当前 fiber 对象的lane, 暂时不清楚作用。大概猜测用于标识任务优先级，通过二进制运算符获取。</p>
+<p>创建 update 对象</p>
+<p>isRenderPhaseUpdate 判断是否是渲染阶段的更新, 判断逻辑 fiber &#x3D;&#x3D;&#x3D; currentlyRenderingFiber$1 或着 fiber.alternate &#x3D;&#x3D;&#x3D; currentlyRenderingFiber$1。</p>
+<p>mount 阶段没有走到渲染更新阶段 所以进入 else 分支，</p>
+<p>执行 enqueueUpdate$1 , 传入了三个参数: fiber, queue, update</p>
+<p>对 pending 以及 update 进行了赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var pending = queue.pending;</span><br><span class="line"></span><br><span class="line">if (pending === null) &#123;</span><br><span class="line">  // This is the first update. Create a circular list.</span><br><span class="line">  update.next = update;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  update.next = pending.next;</span><br><span class="line">  pending.next = update;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">queue.pending = update;</span><br></pre></td></tr></table></figure>
+
+<p>执行 requestEventTime, 获取到一个时间。</p>
+<p>执行 scheduleUpdateOnFiber 传入了三个参数 fiber, lane, eventTime</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
   </entry>
 </search>

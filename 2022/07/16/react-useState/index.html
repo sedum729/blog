@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"sedum729.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="sedum blog">
+  <meta name="description" content="useState作用: 维护函数式组件内部状态参数: 可以传入任意值， 或者是一个函数 用于惰性求值；返回值: 返回一个数组 [状态值, 修改函数];使用方式: 123456789function Demo() &amp;#123;  const [text, setText] &#x3D; React.useState(&amp;#x27;测试&amp;#x27;);  const changeEvent &#x3D; () &#x3D;&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react-useState">
+<meta property="og:title" content="React hook - useState">
 <meta property="og:url" content="https://sedum729.github.io/blog/2022/07/16/react-useState/index.html">
 <meta property="og:site_name" content="sedum">
-<meta property="og:description" content="sedum blog">
+<meta property="og:description" content="useState作用: 维护函数式组件内部状态参数: 可以传入任意值， 或者是一个函数 用于惰性求值；返回值: 返回一个数组 [状态值, 修改函数];使用方式: 123456789function Demo() &amp;#123;  const [text, setText] &#x3D; React.useState(&amp;#x27;测试&amp;#x27;);  const changeEvent &#x3D; () &#x3D;&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-16T03:07:02.000Z">
-<meta property="article:modified_time" content="2022-07-16T03:46:52.087Z">
+<meta property="article:modified_time" content="2022-07-16T07:55:19.914Z">
 <meta property="article:author" content="sedum">
-<meta property="article:tag" content="javascript, react">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://sedum729.github.io/blog/2022/07/16/react-useState/">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>react-useState | sedum</title>
+  <title>React hook - useState | sedum</title>
   
 
 
@@ -204,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          react-useState
+          React hook - useState
         </h1>
 
         <div class="post-meta">
@@ -215,7 +215,16 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-16 11:07:02 / 修改时间：11:46:52" itemprop="dateCreated datePublished" datetime="2022-07-16T11:07:02+08:00">2022-07-16</time>
+              <time title="创建时间：2022-07-16 11:07:02 / 修改时间：15:55:19" itemprop="dateCreated datePublished" datetime="2022-07-16T11:07:02+08:00">2022-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
             </span>
 
           
@@ -229,7 +238,61 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>作用: 维护函数式组件内部状态<br>参数: 可以传入任意值， 或者是一个函数 用于惰性求值；<br>返回值: 返回一个数组 [状态值, 修改函数];<br>使用方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Demo() &#123;</span><br><span class="line">  const [text, setText] = React.useState(&#x27;测试&#x27;);</span><br><span class="line"></span><br><span class="line">  const changeEvent = () =&gt; &#123;</span><br><span class="line">    setText(&#x27;我将修改值&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &lt;div onClick=&#123;changeEvent&#125;&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>实现原理:</p>
+<p>实现分析:</p>
+<p>关于 useState 的调用， React 在不同阶段下会调用不同的 useState 方法； 主要有三个阶段： mount， update， rerender。</p>
+<p>接下来从这个三个阶段分析其代码。</p>
+<h3 id="mount-时"><a href="#mount-时" class="headerlink" title="mount 时"></a>mount 时</h3><p>当调用 React.useState 时执行的函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">useState: function (initialState) &#123;</span><br><span class="line">  currentHookNameInDev = &#x27;useState&#x27;;</span><br><span class="line">  mountHookTypesDev();</span><br><span class="line"></span><br><span class="line">  var prevDispatcher = ReactCurrentDispatcher$1.current;</span><br><span class="line">  ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;</span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    return mountState(initialState);</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    ReactCurrentDispatcher$1.current = prevDispatcher;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>currentHookNameInDev 修改当前正在调用的 hookName；</p>
+<p>mountHookTypesDev 会获取当前的 currentHookNameInDev， 然后将其推到 hookTypes 数组中去。hookTypes 的作用？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function mountHookTypesDev() &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      var hookName = currentHookNameInDev;</span><br><span class="line"></span><br><span class="line">      if (hookTypesDev === null) &#123;</span><br><span class="line">        hookTypesDev = [hookName];</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        hookTypesDev.push(hookName);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>实现其能力的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function mountState(initialState) &#123;</span><br><span class="line">  var hook = mountWorkInProgressHook();</span><br><span class="line"></span><br><span class="line">  if (typeof initialState === &#x27;function&#x27;) &#123;</span><br><span class="line">    // $FlowFixMe: Flow doesn&#x27;t like mixed types</span><br><span class="line">    initialState = initialState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  hook.memoizedState = hook.baseState = initialState;</span><br><span class="line">  var queue = &#123;</span><br><span class="line">    pending: null,</span><br><span class="line">    interleaved: null,</span><br><span class="line">    lanes: NoLanes,</span><br><span class="line">    dispatch: null,</span><br><span class="line">    lastRenderedReducer: basicStateReducer,</span><br><span class="line">    lastRenderedState: initialState</span><br><span class="line">  &#125;;</span><br><span class="line">  hook.queue = queue;</span><br><span class="line">  var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);</span><br><span class="line">  return [hook.memoizedState, dispatch];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用 mountWorkInProgressHook, 首先会创建 hook 对象， 同时会将生成的 hook 对象 作为链表的节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function mountWorkInProgressHook() &#123;</span><br><span class="line">  var hook = &#123;</span><br><span class="line">    memoizedState: null,</span><br><span class="line">    baseState: null,</span><br><span class="line">    baseQueue: null,</span><br><span class="line">    queue: null,</span><br><span class="line">    next: null</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  if (workInProgressHook === null) &#123;</span><br><span class="line">    // This is the first hook in the list</span><br><span class="line">    currentlyRenderingFiber$1.memoizedState = workInProgressHook = hook;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // Append to the end of the list</span><br><span class="line">    workInProgressHook = workInProgressHook.next = hook;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return workInProgressHook;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断如果初始值为函数类型，对函数进行调用， 覆盖默认值。同时将初始值赋值到 hook.memoziedState 跟 hook.baseState 上。</p>
+<p>创建 queue 对象， 赋值到 hook.queue 上。</p>
+<p>创建 dispatch 方法，赋值到 hook.queue.dispatch;</p>
+<p>最后返回一个数组： [ hook.memoziedState, dispatch ];</p>
+<p>简略的看， useState 做的事情就是：</p>
+<ol>
+<li>创建了 hook 对象， 同时将 hook 对象维护到链表上。</li>
+<li>对 hook 对象的 memoziedState 进行赋值。</li>
+<li>创建了 queue 对象， 创建了 dispatch 函数，将 dispatch 函数挂到 queue.dispatch 上</li>
+<li>最后返回了一个数组, [memoziedState, dispatch]；</li>
+</ol>
+<p>那么接下来就会产生几个问题，带着问题去寻找答案。</p>
+<ul>
+<li>hook 对象做什么用的</li>
+<li>hook 对象挂链表的操作是为什么</li>
+<li>queue 对象时做什么用的</li>
+<li>queue 对象上挂了一个 lastRenderedReducer 属性。这个函数作用是什么。</li>
+<li>dispatch 函数做了什么</li>
+</ul>
+<h4 id="dispatch-做了什么"><a href="#dispatch-做了什么" class="headerlink" title="dispatch 做了什么"></a>dispatch 做了什么</h4><p>调用 dispatchSetState 生成 dispatch 时, 传入了两个参数 currentlyRenderingFiber$1, queue 对象。</p>
+<p>currentlyRenderingFiber$1 是一个 FiberNode 对象, 在调用 renderWithHooks 函数对其进行的赋值。 currentlyRenderingFiber$1 &#x3D; workInProgress; 暂时先不管这个对象的其他含义，避免散发问题。</p>
+<p>queue 对象是 mountState 函数调用时创建的。</p>
+<p>[state, setState] &#x3D; React.useState(); 当在调用 setState 时, 会给 dispatchSetState 传入第三个参数 action ;</p>
+<p>接下来看下 dispatchSetState 做了什么。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function dispatchSetState(fiber, queue, action) &#123;</span><br><span class="line">  var lane = requestUpdateLane(fiber);</span><br><span class="line">  var update = &#123;</span><br><span class="line">    lane: lane,</span><br><span class="line">    action: action,</span><br><span class="line">    hasEagerState: false,</span><br><span class="line">    eagerState: null,</span><br><span class="line">    next: null</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  if (isRenderPhaseUpdate(fiber)) &#123;</span><br><span class="line">    enqueueRenderPhaseUpdate(queue, update);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    enqueueUpdate$1(fiber, queue, update);</span><br><span class="line">    var alternate = fiber.alternate;</span><br><span class="line"></span><br><span class="line">    var eventTime = requestEventTime();</span><br><span class="line">    var root = scheduleUpdateOnFiber(fiber, lane, eventTime);</span><br><span class="line"></span><br><span class="line">    if (root !== null) &#123;</span><br><span class="line">      entangleTransitionUpdate(root, queue, lane);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  markUpdateInDevTools(fiber, lane);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>requestUpdateLane 获取当前 fiber 对象的lane, 暂时不清楚作用。大概猜测用于标识任务优先级，通过二进制运算符获取。</p>
+<p>创建 update 对象</p>
+<p>isRenderPhaseUpdate 判断是否是渲染阶段的更新, 判断逻辑 fiber &#x3D;&#x3D;&#x3D; currentlyRenderingFiber$1 或着 fiber.alternate &#x3D;&#x3D;&#x3D; currentlyRenderingFiber$1。</p>
+<p>mount 阶段没有走到渲染更新阶段 所以进入 else 分支，</p>
+<p>执行 enqueueUpdate$1 , 传入了三个参数: fiber, queue, update</p>
+<p>对 pending 以及 update 进行了赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var pending = queue.pending;</span><br><span class="line"></span><br><span class="line">if (pending === null) &#123;</span><br><span class="line">  // This is the first update. Create a circular list.</span><br><span class="line">  update.next = update;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  update.next = pending.next;</span><br><span class="line">  pending.next = update;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">queue.pending = update;</span><br></pre></td></tr></table></figure>
+
+<p>执行 requestEventTime, 获取到一个时间。</p>
+<p>执行 scheduleUpdateOnFiber 传入了三个参数 fiber, lane, eventTime</p>
+
     </div>
 
     
@@ -237,6 +300,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/React/" rel="tag"># React</a>
+          </div>
 
         
 
@@ -245,8 +311,8 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/blog/2022/07/16/hello-world/" rel="next" title="Hello World">
-      Hello World <i class="fa fa-chevron-right"></i>
+    <a href="/blog/2022/07/16/js%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="next" title="JavaScript 运算符">
+      JavaScript 运算符 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -306,6 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#useState"><span class="nav-number">1.</span> <span class="nav-text">useState</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mount-%E6%97%B6"><span class="nav-number">1.1.</span> <span class="nav-text">mount 时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">dispatch 做了什么</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -321,9 +388,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
