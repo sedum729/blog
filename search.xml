@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JavaScript 运算符</title>
-    <url>/blog/2022/07/16/es2022%E6%96%B0%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[]]></content>
+    <title>JavaScript ES2022新特性</title>
+    <url>/blog/2022/07/16/JavaScript-es2022%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<h5 id="Error-prototype-cause"><a href="#Error-prototype-cause" class="headerlink" title="Error.prototype.cause"></a>Error.prototype.cause</h5><p>该 cause 属性指示错误的特定原始原因</p>
+<p>当使用更具体或有用的错误消息捕获和重新抛出错误时使用它，以便仍然可以访问原始错误</p>
+<p>该值可以是任何类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">throw new Error(&#x27;error message&#x27;, &#123; cause: error &#125;);</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -13,7 +16,7 @@
   </entry>
   <entry>
     <title>JavaScript 运算符</title>
-    <url>/blog/2022/07/16/js%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <url>/blog/2022/07/16/JavaScript-js%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h3 id="JavaScript-运算符"><a href="#JavaScript-运算符" class="headerlink" title="JavaScript 运算符"></a>JavaScript 运算符</h3><h4 id="二进制位运算符"><a href="#二进制位运算符" class="headerlink" title="二进制位运算符"></a>二进制位运算符</h4><p>二进制运算符将它们的操作数作为 32 个二进制位（0 或 1）的集合，并返回标准的 JavaScript 数值。</p>
 <ul>
 <li><p>&amp; 二进制位与</p>
@@ -41,7 +44,7 @@
   </entry>
   <entry>
     <title>React hook - useState</title>
-    <url>/blog/2022/07/16/react-useState/</url>
+    <url>/blog/2022/07/16/React-useState/</url>
     <content><![CDATA[<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>作用: 维护函数式组件内部状态<br>参数: 可以传入任意值， 或者是一个函数 用于惰性求值；<br>返回值: 返回一个数组 [状态值, 修改函数];<br>使用方式:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function Demo() &#123;</span><br><span class="line">  const [text, setText] = React.useState(&#x27;测试&#x27;);</span><br><span class="line"></span><br><span class="line">  const changeEvent = () =&gt; &#123;</span><br><span class="line">    setText(&#x27;我将修改值&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &lt;div onClick=&#123;changeEvent&#125;&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>实现原理:</p>
