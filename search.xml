@@ -6,7 +6,10 @@
     <content><![CDATA[<h5 id="Error-prototype-cause"><a href="#Error-prototype-cause" class="headerlink" title="Error.prototype.cause"></a>Error.prototype.cause</h5><p>该 cause 属性指示错误的特定原始原因</p>
 <p>当使用更具体或有用的错误消息捕获和重新抛出错误时使用它，以便仍然可以访问原始错误</p>
 <p>该值可以是任何类型。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">throw new Error(&#x27;error message&#x27;, &#123; cause: error &#125;);</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">async function doJob() &#123;</span><br><span class="line">  const rawResource = await fetch(&#x27;/test&#x27;)</span><br><span class="line">    .catch(err =&gt; &#123;</span><br><span class="line">      throw new Error(&#x27;下载资源失败&#x27;, &#123; cause: err &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">  await doJob();</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">  console.log(e);</span><br><span class="line">  console.log(&#x27;Caused by&#x27;, e.cause);</span><br><span class="line">&#125;</span><br><span class="line">// Error: 下载资源失败</span><br><span class="line">// Caused by TypeError: Failed to fetch</span><br></pre></td></tr></table></figure>
+
+<h5 id="Top-level-await"><a href="#Top-level-await" class="headerlink" title="Top-level await"></a>Top-level await</h5><p>可以在模块的顶层使用 await ; 不需要 async 配合使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// a.js</span><br><span class="line">export const fetchLanguageConfig = await fetch(&#x27;/api/get/language/config&#x27;);</span><br><span class="line"></span><br><span class="line">// main.js</span><br><span class="line">import &#123; fetchLanguageConfig &#125; from &#x27;./a.js&#x27;;</span><br><span class="line"></span><br><span class="line">global.set(&#x27;languageInfo&#x27;, fetchLanguageConfig);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -44,7 +47,7 @@
   </entry>
   <entry>
     <title>React hook - useState</title>
-    <url>/blog/2022/07/16/React-useState/</url>
+    <url>/blog/2022/07/16/useState/</url>
     <content><![CDATA[<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>作用: 维护函数式组件内部状态<br>参数: 可以传入任意值， 或者是一个函数 用于惰性求值；<br>返回值: 返回一个数组 [状态值, 修改函数];<br>使用方式:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function Demo() &#123;</span><br><span class="line">  const [text, setText] = React.useState(&#x27;测试&#x27;);</span><br><span class="line"></span><br><span class="line">  const changeEvent = () =&gt; &#123;</span><br><span class="line">    setText(&#x27;我将修改值&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &lt;div onClick=&#123;changeEvent&#125;&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>实现原理:</p>
