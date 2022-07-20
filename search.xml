@@ -1,49 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JavaScript 运算符</title>
-    <url>/blog/2022/07/16/JavaScript-js%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<h3 id="JavaScript-运算符"><a href="#JavaScript-运算符" class="headerlink" title="JavaScript 运算符"></a>JavaScript 运算符</h3><h4 id="二进制位运算符"><a href="#二进制位运算符" class="headerlink" title="二进制位运算符"></a>二进制位运算符</h4><p>二进制运算符将它们的操作数作为 32 个二进制位（0 或 1）的集合，并返回标准的 JavaScript 数值。</p>
-<ul>
-<li><p>&amp; 二进制位与</p>
-<p>在 a &amp; b 的位表示中，每一个对应的位都为 1 则返回 1, 否则返回 0;</p>
-<p>举个例子</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   000 都为1, 才返回1</span><br><span class="line">5 &amp; 2; // 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>| 二进制位或</p>
-<p>在 a &amp; b 的位表示中，每一个对应的位有一个为 1 则返回 1, 否则返回 0;</p>
-<p>举个例子</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 只要有一个为1, 则返回1</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>^ 二进制位异或</p>
-<p>在 a &amp; b 的位表示中，如果两个相应位值不同 则返回 1, 否则返回 0;</p>
-<p>举个例子</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 对应位不同返回1, 反之返回0</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>~ 按位非</p>
-<p>反转操作数的比特位, 即 0 变成 1, 1 变成 0;</p>
-</li>
-<li><p>&lt;&lt; 左移</p>
-<p>a &lt;&lt; b 将 a 的二进制形式向左移 b 比特位。 右边用 0 填充</p>
-</li>
+    <title>JavaScript ES2022新特性</title>
+    <url>/blog/2022/07/20/Javascript-es2015%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<h5 id="let、-const-关键字和块级作用域"><a href="#let、-const-关键字和块级作用域" class="headerlink" title="let、 const 关键字和块级作用域"></a>let、 const 关键字和块级作用域</h5><p>let 用于声明变量。 const 用于声明常量</p>
+<p>使用 let&#x2F;const 声明的变量存在块级作用域</p>
+<p>let const 声明的变量不存在变量声明提升。存在暂时性死区 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 声明</span><br><span class="line">let val = 1; // 可对该变量进行重新赋值。无论新值为什么类型</span><br><span class="line">const val = 1; // 不可对该变量进行重新赋值。但如果是对象类型可以修改其内部值</span><br><span class="line"></span><br><span class="line">// 块级作用域</span><br><span class="line">&#123;</span><br><span class="line">  var val1 = 1;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  let val2 = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val1 可以被访问到， val2 无法被访问到。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h5><ul>
+<li>允许函数使用默认值</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1; // 0001</span><br><span class="line">let b = a &lt;&lt; 1; // 0010</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// before</span><br><span class="line">function fnName(name) &#123;</span><br><span class="line">  name = name ? name : &#x27;default&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// after</span><br><span class="line">function fnName(name = &#x27;default&#x27;);</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>&gt;&gt; 有符号右移动</p>
-<p>a &gt;&gt; b 将 a 的二进制形式向右移动 b 比特位。丢弃被移除的位</p>
+<li><p>箭头函数</p>
+<p>箭头函数的this是根据执行上下文决定的，内部不会绑定 this</p>
+<p>箭头函数不存在 arguments 参数， 使用 rest 承接剩余参数。</p>
 </li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1 // 0101</span><br><span class="line">let b = a &gt;&gt; 1 // 0010</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function fnName() &#123;&#125;</span><br><span class="line"></span><br><span class="line">const fnName = () =&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>&gt;&gt;&gt; 无符号右移</p>
-<p>a &gt;&gt;&gt; b 将 a 的二进制形式向右移动 b 比特位。 丢弃被移出的位， 并使用 0 在左侧填充</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1 // 1010</span><br><span class="line">let b = a &gt;&gt;&gt; 1 // 0101</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<h5 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h5>]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -148,6 +126,57 @@
       </categories>
       <tags>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 运算符</title>
+    <url>/blog/2022/07/16/JavaScript-js%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<h3 id="JavaScript-运算符"><a href="#JavaScript-运算符" class="headerlink" title="JavaScript 运算符"></a>JavaScript 运算符</h3><h4 id="二进制位运算符"><a href="#二进制位运算符" class="headerlink" title="二进制位运算符"></a>二进制位运算符</h4><p>二进制运算符将它们的操作数作为 32 个二进制位（0 或 1）的集合，并返回标准的 JavaScript 数值。</p>
+<ul>
+<li><p>&amp; 二进制位与</p>
+<p>在 a &amp; b 的位表示中，每一个对应的位都为 1 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   000 都为1, 才返回1</span><br><span class="line">5 &amp; 2; // 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>| 二进制位或</p>
+<p>在 a &amp; b 的位表示中，每一个对应的位有一个为 1 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 只要有一个为1, 则返回1</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>^ 二进制位异或</p>
+<p>在 a &amp; b 的位表示中，如果两个相应位值不同 则返回 1, 否则返回 0;</p>
+<p>举个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 5: 00000000000000000000000000000101</span><br><span class="line">// 2: 00000000000000000000000000000010</span><br><span class="line">--------------------------------------</span><br><span class="line">                                   111 对应位不同返回1, 反之返回0</span><br><span class="line">5 &amp; 2; // 7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>~ 按位非</p>
+<p>反转操作数的比特位, 即 0 变成 1, 1 变成 0;</p>
+</li>
+<li><p>&lt;&lt; 左移</p>
+<p>a &lt;&lt; b 将 a 的二进制形式向左移 b 比特位。 右边用 0 填充</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1; // 0001</span><br><span class="line">let b = a &lt;&lt; 1; // 0010</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&gt;&gt; 有符号右移动</p>
+<p>a &gt;&gt; b 将 a 的二进制形式向右移动 b 比特位。丢弃被移除的位</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1 // 0101</span><br><span class="line">let b = a &gt;&gt; 1 // 0010</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&gt;&gt;&gt; 无符号右移</p>
+<p>a &gt;&gt;&gt; b 将 a 的二进制形式向右移动 b 比特位。 丢弃被移出的位， 并使用 0 在左侧填充</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1 // 1010</span><br><span class="line">let b = a &gt;&gt;&gt; 1 // 0101</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
